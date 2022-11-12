@@ -1,0 +1,48 @@
+.c-header {
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #9197ae;
+  text-transform: uppercase;
+  padding: 0 2rem;
+  z-index: 1;
+}
+
+.c-header__logo {
+  font-weight: 800;
+  letter-spacing: 1px;
+  font-size: 1.25rem;
+}
+
+.c-header__links {
+  display: none;
+}
+
+.c-header__link {
+  letter-spacing: 1px;
+  font-size: 14px;
+  margin-left: 20px;
+  font-weight: 600;
+  padding: 2px 4px;
+  text-decoration: none;
+}
+
+.c-header__icon {
+  background-image: url(https://rafaelalucas91.github.io/assets/icons/black/icon-141.svg);
+  width: 2rem;
+  height: 2rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@media screen and (min-width: 48em) {
+  .c-header__icon {
+    display: none;
+  }
+
+  .c-header__links {
+    display: flex;
+  }
+}

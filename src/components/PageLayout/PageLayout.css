@@ -1,0 +1,31 @@
+.c-page-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.c-container {
+  margin-left: auto;
+  margin-right: auto;
+  padding: var(--g-spacing-x-large) 0;
+  max-width: 95.25rem;
+  width: 86%;
+  min-height: 100vh;
+}
+
+.c-container--xs {
+  max-width: 48rem;
+}
+
+.c-container--small {
+  max-width: 62.5rem;
+}
+
+.c-container--large {
+  max-width: 100rem;
+}
+
+.c-page-layout-template__main {
+  position: relative;
+  flex: 1;
+}

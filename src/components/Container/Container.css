@@ -1,0 +1,23 @@
+.l-container {
+  display: flex;
+  margin: 0 auto;
+  max-width: var(--g-container-max-width);
+  padding: var(--g-spacing);
+  width: 100%;
+}
+
+.l-container--is-narrow {
+  max-width: var(--g-container-narrow-max-width);
+}
+
+.l-container--is-align-center {
+  justify-content: center;
+}
+
+.l-container--is-align-left {
+  justify-content: left;
+}
+
+.l-container--is-align-right {
+  justify-content: right;
+}
