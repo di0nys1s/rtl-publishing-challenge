@@ -1,19 +1,16 @@
 import "./Footer.css";
 
-const Footer = () => {
+import { FooterProps } from "./Footer.interfaces";
+
+const Footer = ({ children }: FooterProps) => {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="c-footer">
-      <div className="c-footer__left">
-        <p className="c-footer__links">
-          <a href="/">Home</a>
-          <a href="/">Blog</a>
-          <a href="/">About</a>
-          <a href="/">Contact</a>
-        </p>
-      </div>
+      <div className="c-footer__left">{children}</div>
 
       <div className="c-footer__right">
-        <span>RTL &copy; 2022</span>
+        <span>RTL &copy; {currentYear}</span>
       </div>
     </footer>
   );

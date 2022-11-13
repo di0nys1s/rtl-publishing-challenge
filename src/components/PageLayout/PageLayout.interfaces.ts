@@ -1,8 +1,9 @@
 import { ReactNode } from "react";
 
-export interface PageLayoutProps {
-  additionalClassNames?: string;
+import { IAdditionalClassNames } from "../../interfaces";
+export interface PageLayoutProps extends IAdditionalClassNames {
   children?: ReactNode;
+  childrenTopBanner?: ReactNode;
   containerAlignment?: "center" | "left" | "right";
   footer: ReactNode;
   header: ReactNode;

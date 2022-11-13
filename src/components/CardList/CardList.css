@@ -1,0 +1,15 @@
+.c-card-list {
+  align-items: center;
+  display: grid;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+@media (min-width: 25em) {
+  .c-card-list {
+    display: flex;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+  }
+}

@@ -1,0 +1,54 @@
+.c-publishing-page__banner-image {
+  width: 100%;
+}
+
+.c-publishing-page__cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 3rem 0;
+}
+
+.c-publishing-page__top-banner {
+  background-color: #222;
+  width: 100%;
+  height: 12.5rem;
+  position: absolute;
+  z-index: -1;
+}
+
+.c-publishing-page__top-section {
+  text-align: center;
+}
+
+.c-publishing-page__main-header-title {
+  color: #222;
+  font-size: 3.75rem;
+  font-weight: 900;
+  padding: 0.5rem 0 0;
+}
+
+.c-publishing-page__main-small-header {
+  color: #f80;
+  text-transform: uppercase;
+  font-size: 1.35rem;
+  padding: 2rem;
+  font-weight: 800;
+  position: relative;
+  top: 1.5rem;
+}
+
+.c-footer-logo {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 0.5rem;
+  position: relative;
+  left: 0.25rem;
+}
+
+.c-footer__link {
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 0.25rem;
+}

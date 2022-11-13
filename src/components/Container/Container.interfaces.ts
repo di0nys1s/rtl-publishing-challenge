@@ -1,7 +1,8 @@
 import { ReactNode } from "react";
 
-export interface ContainerProps {
-  additionalClassNames?: string;
+import { IAdditionalClassNames } from "./../../interfaces";
+
+export interface ContainerProps extends IAdditionalClassNames {
   alignment?: "center" | "left" | "right";
   children?: ReactNode;
   isNarrow?: boolean;
