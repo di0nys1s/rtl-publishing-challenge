@@ -4,13 +4,15 @@ import {
   IImage,
   ISubTitle,
   ITitle,
+  ISupportiveText,
 } from "../../interfaces";
 
 export interface PagePreviewCardProps
   extends IAdditionalClassNames,
     ICoverLink,
     ISubTitle,
-    ITitle {
+    ITitle,
+    ISupportiveText {
   contentDescription?: string;
   contentTitle?: string;
   image: IImage;

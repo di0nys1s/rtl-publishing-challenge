@@ -2,7 +2,7 @@ import "./Footer.css";
 
 import { FooterProps } from "./Footer.interfaces";
 
-const Footer = ({ children }: FooterProps) => {
+const Footer = ({ children, companyName }: FooterProps) => {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -10,7 +10,9 @@ const Footer = ({ children }: FooterProps) => {
       <div className="c-footer__left">{children}</div>
 
       <div className="c-footer__right">
-        <span>RTL &copy; {currentYear}</span>
+        <span>
+          {companyName} &copy; {currentYear}
+        </span>
       </div>
     </footer>
   );

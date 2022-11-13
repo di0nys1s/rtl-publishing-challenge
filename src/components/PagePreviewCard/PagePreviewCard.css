@@ -73,7 +73,7 @@
   width: 1px;
 }
 
-@media (min-width: 64em) {
+@media (min-width: 48em) {
   .c-page-preview-card__container {
     max-width: 21.125rem;
   }

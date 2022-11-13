@@ -11,7 +11,7 @@ const CardList = ({ additionalClassNames, items }: CardListProps) => {
 
   return (
     <div className={cardListClassNames} data-testid="qa-card">
-      {items.map((item) => item)}
+      {items?.map((item) => item)}
     </div>
   );
 };
