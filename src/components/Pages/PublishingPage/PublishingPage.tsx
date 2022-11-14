@@ -121,11 +121,13 @@ const PublishingPage = ({ additionalClassNames }: PublishingPageProps) => {
           header={<Header />}
         >
           <main className="c-page-layout__main">
-            <img
-              className="c-publishing-page__banner-image"
-              src={publishingData?.image.imageUrl}
-              alt={publishingData?.image.type}
-            />
+            <div className="c-publishing-page__banner">
+              <img
+                className="c-publishing-page__banner-image"
+                src={publishingData?.image.imageUrl}
+                alt={publishingData?.image.type}
+              />
+            </div>
 
             <div className="c-container">
               <div className="c-publishing-page__top-section">
