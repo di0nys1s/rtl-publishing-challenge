@@ -6,6 +6,8 @@ import { Header } from "../../Header";
 import { CoverLink } from "../../CoverLink";
 import { CardList } from "../../CardList";
 
+import { publishingPageConstants } from "./PublishingPage.constants";
+
 // import InfiniteScroll from "react-infinite-scroll-component";
 
 import { PublishingPageProps } from "./PublishingPage.interfaces";
@@ -20,6 +22,8 @@ import { ListItemCard } from "../../ListItemCard";
 const PublishingPage = ({ additionalClassNames }: PublishingPageProps) => {
   const { publishing: publishingData, loading: isLoading } = useGetPublishing();
 
+  const { minimumScreenSizeForSliceCards } = publishingPageConstants;
+
   const { screenSize } = useGetScreenSize();
 
   const handleGetCardItems = (type: string) => {
@@ -29,7 +33,7 @@ const PublishingPage = ({ additionalClassNames }: PublishingPageProps) => {
     let slicedDataEnd = 0;
     if (type === "list") {
       slicedDataEnd = Number(publishingData?.bundleItems.length);
-      if (screenSize > 1300) {
+      if (screenSize > minimumScreenSizeForSliceCards) {
         slicedDataStart = 3;
       } else {
         slicedDataStart = 2;
@@ -37,7 +41,7 @@ const PublishingPage = ({ additionalClassNames }: PublishingPageProps) => {
     } else {
       slicedDataStart = 0;
 
-      if (screenSize > 1300) {
+      if (screenSize > minimumScreenSizeForSliceCards) {
         slicedDataEnd = 3;
       } else {
         slicedDataEnd = 2;
@@ -61,7 +65,9 @@ const PublishingPage = ({ additionalClassNames }: PublishingPageProps) => {
               key={id}
               coverLink={<CoverLink href={urlAlias} supportiveText={titel} />}
               contentTitle={titel}
-              size={screenSize < 1300 ? "small" : "medium"}
+              size={
+                screenSize < minimumScreenSizeForSliceCards ? "small" : "medium"
+              }
               contentDescription={lead}
               image={{
                 altText: "page preview",
@@ -101,7 +107,7 @@ const PublishingPage = ({ additionalClassNames }: PublishingPageProps) => {
                   by
                   <a
                     className="c-footer__link"
-                    href="creatorLink"
+                    href="https://github.com/di0nys1s/rtl-publishing-challenge"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

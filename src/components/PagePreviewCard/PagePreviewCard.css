@@ -73,8 +73,14 @@
   width: 1px;
 }
 
-@media (min-width: 48em) {
+@media (min-width: 64em) {
   .c-page-preview-card__container {
     max-width: 21.125rem;
+  }
+}
+
+@media (min-width: 48em) {
+  .c-page-preview-card__container {
+    max-width: 16rem;
   }
 }

@@ -1,6 +1,6 @@
 .c-spinner__container {
   align-items: center;
-  background-color: rgba(1, 1, 1, 0.5);
+  background-color: rgba(204, 204, 204, 0.5);
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -17,7 +17,7 @@
 
 .c-spinner__icon {
   animation: rotate 1s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #fff #fff #fff transparent;
+  border-color: #ff8801 #ff8801 #ff8801 transparent;
   border-radius: 50%;
   border-style: solid;
 }

@@ -3,13 +3,13 @@
   display: grid;
   flex-wrap: wrap;
   gap: 1rem;
-  justify-content: center;
+  max-width: 70rem;
 }
 
-@media (min-width: 25em) {
+@media (min-width: 48em) {
   .c-card-list {
     display: flex;
     grid-template-columns: repeat(3, 1fr);
-    width: 100%;
+    justify-content: space-around;
   }
 }

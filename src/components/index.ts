@@ -1,4 +1,3 @@
-export * from "./Card";
 export * from "./CardList";
 export * from "./CoverLink";
 export * from "./Footer";
