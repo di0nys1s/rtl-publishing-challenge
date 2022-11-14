@@ -16,7 +16,7 @@ describe("CoverLink", () => {
 
   describe("When class assigned to CoverLink component", () => {
     it("should have the class assigned to asset", () => {
-      const additionalClassName = "project-cover-link";
+      const additionalClassName = "c-additional-cover-link";
 
       render(
         <CoverLink
@@ -32,7 +32,7 @@ describe("CoverLink", () => {
 
   describe("When CoverLink has a supportive text", () => {
     it("should include the supportive text", () => {
-      const supportiveText = "Project Link";
+      const supportiveText = "Publishing link";
 
       render(
         <CoverLink

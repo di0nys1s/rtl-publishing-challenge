@@ -7,6 +7,7 @@ const useGetPublishing = () => {
   const [loading, setLoading] = useState<boolean>(true);
 
   const getPublishingData = () => {
+    // Better to keep the localhost url in a .env file and call it with process.env.REACT_APP_LOCALHOST_URL
     fetch("http://localhost:3000/publishing")
       .then((response) => response.json())
       .then((json) => setPublishing(json))
@@ -18,7 +19,7 @@ const useGetPublishing = () => {
   useEffect(() => {
     const mockGetDataDelay = setTimeout(() => {
       getPublishingData();
-    }, 1000);
+    }, 750);
 
     return () => clearTimeout(mockGetDataDelay);
   }, []);

@@ -5,7 +5,7 @@ export interface IAdditionalClassNames {
 }
 
 export interface ICoverLink {
-  coverLink: ReactNode;
+  coverLink?: ReactNode;
 }
 
 export interface IImage {

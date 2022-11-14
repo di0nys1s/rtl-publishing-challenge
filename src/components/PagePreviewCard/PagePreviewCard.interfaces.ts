@@ -14,6 +14,7 @@ export interface PagePreviewCardProps
     ITitle,
     ISupportiveText {
   contentDescription?: string;
+  contentDescriptionMaxLength?: number;
   contentTitle?: string;
   image: IImage;
   isHero?: boolean;

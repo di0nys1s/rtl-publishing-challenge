@@ -1,5 +1,3 @@
-import React from "react";
-
 import cx from "classnames";
 
 import { PagePreviewCardProps } from "./PagePreviewCard.interfaces";
@@ -9,6 +7,7 @@ import "./PagePreviewCard.css";
 const PagePreviewCard = ({
   additionalClassNames,
   contentDescription,
+  contentDescriptionMaxLength,
   contentTitle,
   coverLink,
   image: { altText, src },
@@ -25,7 +24,10 @@ const PagePreviewCard = ({
 
   return (
     <article className="c-page-preview-card__container">
-      <div className={pagePreviewCardClassNames}>
+      <div
+        data-testid="qa-page-preview-card"
+        className={pagePreviewCardClassNames}
+      >
         <div className="c-page-preview-card__image-container">
           <img
             alt={altText}
@@ -35,7 +37,9 @@ const PagePreviewCard = ({
           />
         </div>
 
-        <TitleTag className="c-page-preview-card__title">{title}</TitleTag>
+        <TitleTag data-testid="qa-title" className="c-page-preview-card__title">
+          {title}
+        </TitleTag>
 
         <span className="c-page-preview-card__sub-title">{subTitle}</span>
 
@@ -43,8 +47,16 @@ const PagePreviewCard = ({
           {contentTitle}
         </TitleTag>
 
-        <p className="c-page-preview-card__content-description">
-          {contentDescription?.substring(0, 75)}
+        <p
+          data-testid="qa-content-description"
+          className="c-page-preview-card__content-description"
+        >
+          {contentDescription?.substring(
+            0,
+            contentDescriptionMaxLength
+              ? contentDescriptionMaxLength
+              : contentDescription.length
+          )}
         </p>
 
         {coverLink}

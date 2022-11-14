@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 import { PagePreviewCard } from "../../PagePreviewCard";
 import { PageLayout } from "../../PageLayout";
 import { Spinner } from "../../Spinner";
@@ -5,26 +7,38 @@ import { Footer } from "../../Footer";
 import { Header } from "../../Header";
 import { CoverLink } from "../../CoverLink";
 import { CardList } from "../../CardList";
+import { LoadMoreButton } from "../../LoadMoreButton";
 
 import { publishingPageConstants } from "./PublishingPage.constants";
-
-// import InfiniteScroll from "react-infinite-scroll-component";
 
 import { PublishingPageProps } from "./PublishingPage.interfaces";
 
 import cx from "classnames";
 
-import { useGetPublishing, useGetScreenSize } from "../../../hooks";
+import {
+  IBundleItem,
+  useGetPublishing,
+  useGetScreenSize,
+} from "../../../hooks";
 
 import "./PublishingPage.css";
 import { ListItemCard } from "../../ListItemCard";
 
 const PublishingPage = ({ additionalClassNames }: PublishingPageProps) => {
+  const PAGE_SIZE = 5;
+
   const { publishing: publishingData, loading: isLoading } = useGetPublishing();
 
-  const { minimumScreenSizeForSliceCards } = publishingPageConstants;
+  const { contentDescriptionMaxLength, minimumScreenSizeForSliceCards } =
+    publishingPageConstants;
 
   const { screenSize } = useGetScreenSize();
+
+  const [currentCardList, setCurrentCardList] = useState<IBundleItem[]>([]);
+  const [isLoadMore, setIsLoadMore] = useState(false);
+
+  const [displayedItemsLimit, setDisplayedItemsLimit] =
+    useState<number>(PAGE_SIZE);
 
   const handleGetCardItems = (type: string) => {
     const Component = type === "list" ? ListItemCard : PagePreviewCard;
@@ -32,7 +46,7 @@ const PublishingPage = ({ additionalClassNames }: PublishingPageProps) => {
     let slicedDataStart = 0;
     let slicedDataEnd = 0;
     if (type === "list") {
-      slicedDataEnd = Number(publishingData?.bundleItems.length);
+      slicedDataEnd = Number(currentCardList.length);
       if (screenSize > minimumScreenSizeForSliceCards) {
         slicedDataStart = 3;
       } else {
@@ -48,7 +62,7 @@ const PublishingPage = ({ additionalClassNames }: PublishingPageProps) => {
       }
     }
 
-    const publishingCardItems = publishingData?.bundleItems
+    const publishingCardItems = currentCardList
       .slice(slicedDataStart, slicedDataEnd)
       .map(
         ({
@@ -63,6 +77,7 @@ const PublishingPage = ({ additionalClassNames }: PublishingPageProps) => {
           return (
             <Component
               key={id}
+              contentDescriptionMaxLength={contentDescriptionMaxLength}
               coverLink={<CoverLink href={urlAlias} supportiveText={titel} />}
               contentTitle={titel}
               size={
@@ -83,6 +98,30 @@ const PublishingPage = ({ additionalClassNames }: PublishingPageProps) => {
 
     return publishingCardItems;
   };
+
+  const handleLoadMoreArticles = () => {
+    setIsLoadMore(true);
+
+    setDisplayedItemsLimit(displayedItemsLimit + PAGE_SIZE);
+  };
+
+  useEffect(() => {
+    if (!publishingData?.bundleItems) {
+      return;
+    }
+
+    const mockDelayLoadMore = setTimeout(() => {
+      setCurrentCardList(
+        publishingData?.bundleItems.slice(0, displayedItemsLimit)
+      );
+
+      setIsLoadMore(false);
+    }, 500);
+
+    return () => {
+      clearTimeout(mockDelayLoadMore);
+    };
+  }, [publishingData?.bundleItems, displayedItemsLimit]);
 
   return (
     <div className="c-publishing-page">
@@ -118,7 +157,29 @@ const PublishingPage = ({ additionalClassNames }: PublishingPageProps) => {
               companyName="RTL"
             />
           }
-          header={<Header />}
+          header={
+            <Header
+              background="radial-gradient(circle, #ff9201, #f15c00"
+              logo={{
+                imageSrc: "images/logo.png",
+                href: "/",
+              }}
+              children={
+                <>
+                  <img
+                    className="c-header__hamburger"
+                    src="images/hamburger.svg"
+                    alt="hamburger menu"
+                  />
+                  <img
+                    className="c-header__profile-image"
+                    src="images/user.png"
+                    alt="profile"
+                  />
+                </>
+              }
+            />
+          }
         >
           <main className="c-page-layout__main">
             <div className="c-publishing-page__banner">
@@ -142,25 +203,27 @@ const PublishingPage = ({ additionalClassNames }: PublishingPageProps) => {
                 </p>
               </div>
 
-              {/* <div className="c-publishing-page__cards">
-              {publishingCardItems && (
-                <InfiniteScroll
-                  dataLength={publishingCardItems.length}
-                  next={getData}
-                  hasMore={true}
-                  refreshFunction={getData}
-                  loader={<h4>Loading...</h4>}
-                  pullDownToRefresh
-                >
-                  <CardList items={publishingCardItems} />
-                </InfiniteScroll>
-              )}
-            </div> */}
-
               <div className="c-publishing-page__cards">
                 <CardList items={handleGetCardItems("preview")} />
                 <CardList items={handleGetCardItems("list")} />
               </div>
+
+              <LoadMoreButton
+                buttonText={isLoadMore ? "Loading..." : "Load more"}
+                data={publishingData?.bundleItems ?? []}
+                loadSize={currentCardList.length}
+                message={
+                  <p className="c-load-more__message">
+                    You have reached the end of this list. Look for more
+                    articles on our &nbsp;
+                    <a className="c-load-more__message-link" href="/">
+                      homepage
+                    </a>
+                    .
+                  </p>
+                }
+                onClick={handleLoadMoreArticles}
+              />
             </div>
           </main>
         </PageLayout>

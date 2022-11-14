@@ -8,6 +8,7 @@ const ListItemCard = ({
   additionalClassNames,
   contentTitle,
   contentDescription,
+  contentDescriptionMaxLength,
   coverLink,
   image: { altText, src },
   isPageTitle = false,
@@ -39,7 +40,12 @@ const ListItemCard = ({
           </TitleTag>
 
           <p className="c-page-preview-card__content-description">
-            {contentDescription?.substring(0, 75)}
+            {contentDescription?.substring(
+              0,
+              contentDescriptionMaxLength
+                ? contentDescriptionMaxLength
+                : contentDescription.length
+            )}
           </p>
         </div>
       </div>
